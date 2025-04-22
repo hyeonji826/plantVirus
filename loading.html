@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>예방정보 로딩창</title>
+    <style>
+      body {
+        background: linear-gradient(to bottom right, #e8f5e9, #f1f8e9);
+        font-family: "Segoe UI", sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .spinner {
+        width: 80px;
+        height: 80px;
+        border: 10px solid #c8e6c9;
+        border-top: 10px solid #388e3c;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-bottom: 24px;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      p {
+        font-size: 1.3rem;
+        color: #2e7d32;
+        margin: 0;
+      }
+
+      .notice {
+        margin-top: 28px;
+        background-color: #ffffffcc;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 128, 0, 0.1);
+        font-size: 1rem;
+        color: #444;
+        max-width: 90%;
+      }
+
+      .notice strong {
+        color: #d84315;
+      }
+    </style>
+    <script>
+      setTimeout(() => {
+        const params = new URLSearchParams(window.location.search);
+        const virus = params.get("virus");
+        const crop = params.get("crop");
+        location.href = `result.html?virus=${virus}&crop=${crop}`;
+      }, 3000);
+    </script>
+  </head>
+  <body>
+    <div class="spinner"></div>
+    <p>병해충 예방 정보를 준비 중입니다...</p>
+    <div class="notice">
+      ⚠️ 본 정보는 <strong>참고용</strong>으로 제공되며,<br />
+      실제 방제 시 <strong>전문가의 상담</strong> 및
+      <strong>공공기관의 지침</strong>을 반드시 확인하십시오.<br />
+      농약 사용 전 제품 라벨을 꼭 확인해주세요.
+    </div>
+  </body>
+</html>

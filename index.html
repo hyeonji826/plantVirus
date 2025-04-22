@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>식물 바이러스 예측</title>
+  <link rel="stylesheet" href="./style.css" />
+  <script defer src="main.js"></script>
+</head>
+<body>
+  <h2>🌿농부 등대</h2>
+
+  <div class="form-group">
+    <label for="region"> 지역 선택</label>
+    <select id="region">
+      <option value="">-- 지역 선택 --</option>
+      <option value="경기도">경기도</option>
+      <option value="강원도영서">강원도영서</option>
+      <option value="강원도영동">강원도영동</option>
+      <option value="충청북도">충청북도</option>
+      <option value="충청남도">충청남도</option>
+      <option value="전라북도">전라북도</option>
+      <option value="전라남도">전라남도</option>
+      <option value="경상북도">경상북도</option>
+      <option value="경상남도">경상남도</option>
+      <option value="제주도">제주도</option>
+    </select>
+
+    <label for="crop"> 작물 선택</label>
+    <select id="crop">
+      <option value="">-- 작물 선택 --</option>
+      <option value="고추">고추</option>
+      <option value="토마토">토마토</option>
+      <option value="벼">벼</option>
+      <option value="감자">감자</option>
+      <option value="사과">사과</option>
+      <option value="오이">오이</option>
+    </select>
+
+    <button onclick="predict()">📊 위험도 예측</button>
+  </div>
+
+  <div id="result-cards"></div>
+</body>
+</html>
