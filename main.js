@@ -11,7 +11,7 @@ function getTmFc() {
   const d = String(now.getDate()).padStart(2, "0");
   const h = now.getHours();
   const base = h < 18 ? "0600" : "1800";
-  return `${y}${m}${d}${base}`;
+  return `${y}년${m}월${d}일 ${base}`;
 }
 
 async function predict() {
@@ -35,11 +35,17 @@ async function predict() {
       fetch(
         `https://apis.data.go.kr/1360000/MidFcstInfoService/getMidLandFcst?serviceKey=${serviceKey}&numOfRows=10&pageNo=1&dataType=JSON&regId=${regionCode}&tmFc=${tmFc}`
       ).then((r) => r.json()),
-      fetch("./virus_conditions.json").then((r) => r.json()),
+      fetch("/virus_conditions.json").then((r) => r.json()),
     ]);
+
+    console.log(taData);
+    console.log(landData);
 
     const ta = taData.response.body.items.item[0];
     const land = landData.response.body.items.item[0];
+    if (!ta || !land) {
+      throw new Error("예보 데이터가 없습니다. 지역코드를 확인하세요");
+    }
     const viruses = virusData.filter((v) => v.crop === crop);
 
     let cardsHTML = "";
@@ -93,7 +99,7 @@ async function predict() {
         const e = new Date(base);
         e.setDate(e.getDate() + 7);
         const f = (d) =>
-          `${d.getFullYear()}년 ${d.getMonth() + 1}월 ${d.getDate()}일`;
+          `${d.getFullYear()} ${d.getMonth() + 1} ${d.getDate()}`;
         return `${f(s)} ~ ${f(e)}`;
       })();
 
