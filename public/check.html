@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>보유 약제 분석</title>
+    <link rel="stylesheet" href="./css/check_style.css" />
+  </head>
+  <body>
+    <div class="upload-box">
+      <p><strong>보유한 농약 제품의 사진을 업로드하세요.</strong></p>
+      <input type="file" id="imageInput" accept="image/*" />
+      <br />
+      <button onclick="analyzeImage()">성분 분석하기</button>
+      <p id="ocrResult">OCR 결과가 여기에 표시됩니다.</p>
+    </div>
+  </body>
+</html>
