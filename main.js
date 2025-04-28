@@ -1,7 +1,7 @@
-// main.js 병합된 최종 예측 시스템
+// main.js 예측 시스템(Only 중기)
 
 const serviceKey =
-  "fQlfPKnYI5jKgbG0KRQHAE1byN6vF46OBF/B7t4svBhp/3n+vsVBaK322v5yH+AJbtMYn5d80ICQgzXeIlxbcw==";
+  "fQlPfKnYI5jKgbG0K0RQHAE1byN6vF46OBF%2FB7t4svBhp%2F3n%2BvsVBaK322v5yH%2BAJbtMYn5d80ICQgzXellxbcw%3D%3D";
 
 // 중기예보 기준 시간
 function getTmFc() {
@@ -11,7 +11,7 @@ function getTmFc() {
   const d = String(now.getDate()).padStart(2, "0");
   const h = now.getHours();
   const base = h < 18 ? "0600" : "1800";
-  return `${y}년${m}월${d}일 ${base}`;
+  return `${y}${m}${d}${base}`;
 }
 
 async function predict() {
@@ -19,6 +19,7 @@ async function predict() {
   const crop = document.getElementById("crop").value;
   const resultDiv = document.getElementById("result-cards");
   resultDiv.innerHTML = "<p>데이터 불러오는 중...</p>";
+  const baseUrl = "https://apis.data.go.kr/1360000/MidFcstInfoService";
 
   if (!regionCode || !crop) {
     alert("지역과 작물을 모두 선택해주세요.");
@@ -28,24 +29,21 @@ async function predict() {
   const tmFc = getTmFc();
 
   try {
-    const [taData, landData, virusData] = await Promise.all([
-      fetch(
-        `https://apis.data.go.kr/1360000/MidFcstInfoService/getMidTa?serviceKey=${serviceKey}&numOfRows=10&pageNo=1&dataType=JSON&regId=${regionCode}&tmFc=${tmFc}`
-      ).then((r) => r.json()),
-      fetch(
-        `https://apis.data.go.kr/1360000/MidFcstInfoService/getMidLandFcst?serviceKey=${serviceKey}&numOfRows=10&pageNo=1&dataType=JSON&regId=${regionCode}&tmFc=${tmFc}`
-      ).then((r) => r.json()),
-      fetch("/virus_conditions.json").then((r) => r.json()),
-    ]);
+    const weatherResponse = await fetch(
+      `/api/weather?regionCode=${regionCode}&tmFc=${tmFc}`
+    );
+    const weatherData = await weatherResponse.json();
 
-    console.log(taData);
-    console.log(landData);
+    const virusData = await fetch("/virus_conditions.json").then((r) =>
+      r.json()
+    );
 
-    const ta = taData.response.body.items.item[0];
-    const land = landData.response.body.items.item[0];
-    if (!ta || !land) {
-      throw new Error("예보 데이터가 없습니다. 지역코드를 확인하세요");
-    }
+    const ta = weatherData.taData.response.body.items.item[0];
+    const land = weatherData.landData.response.body.items.item[0];
+
+    // 바이러스 데이터 확인해보기
+    console.log(virusData);
+
     const viruses = virusData.filter((v) => v.crop === crop);
 
     let cardsHTML = "";
