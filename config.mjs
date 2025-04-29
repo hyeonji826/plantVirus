@@ -23,4 +23,7 @@ export const config = {
   host: {
     port: parseInt(required("HOST_PORT", 8080)),
   },
+  kdata: {
+    fcstinfo: required("DATA_ENCODE"),
+  },
 };

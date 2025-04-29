@@ -14,7 +14,7 @@ app.use(express.static("public"));
 
 app.use(express.json());
 app.get("/", (req, res) => {
-  fs.readFile(__dirname + "/index.html", (err, data) => {
+  fs.readFile(__dirname + "/public/index.html", (err, data) => {
     if (err) {
       res.status(500);
       return res.send("파일 읽기 오류");
@@ -34,3 +34,7 @@ app.use((req, res, next) => {
 app.listen(config.host.port, () => {
   console.log("서버 실행 중");
 });
+
+// https://apihub.kma.go.kr/#
+// 2. 동네예보(단기예보, 초단기예보, 실황) 격자자료
+// https://github.com/ohjihwan/portfolio

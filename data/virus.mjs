@@ -298,6 +298,10 @@ let virus = [
   },
 ];
 
+export async function getAll() {
+  return virus;
+}
+
 export async function getByCrop(crop) {
   return virus.find((data) => data === crop);
 }

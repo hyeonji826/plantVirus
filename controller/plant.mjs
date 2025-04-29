@@ -20,3 +20,7 @@ export async function getCropVirus(req, res, next) {
     res.status(404).json({ message: `${crop}의 데이터가가 없습니다.` });
   }
 }
+export async function getVirus(req, res, next) {
+  const data = await virusRepository.getAll();
+  res.status(200).json(data);
+}
