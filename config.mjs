@@ -25,5 +25,6 @@ export const config = {
   },
   kdata: {
     fcstinfo: required("DATA_ENCODE"),
+    apihub: required("APIHUB_INCODE"),
   },
 };

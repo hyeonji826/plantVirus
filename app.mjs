@@ -37,4 +37,6 @@ app.listen(config.host.port, () => {
 
 // https://apihub.kma.go.kr/#
 // 2. 동네예보(단기예보, 초단기예보, 실황) 격자자료
+//https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=HncE4RCAL%2BTUTsv%2B1iD0HitkdYMR96i%2F2bowjyprYv80WZ%2F%2FJMD0MYIhZUiFyOH0XGk7xGYbAn1owZRNOLSzsg%3D%3D&pageNo=1&numOfRows=1000&dataType=JSON&base_date=20250430&base_time=0500&nx=55&ny=127
 // https://github.com/ohjihwan/portfolio
+// 기온, 풍속, 습도**

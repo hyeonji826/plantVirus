@@ -36,10 +36,43 @@
         <option value="사과">사과</option>
         <option value="오이">오이</option>
       </select>
+      <div class="input-container">
+        <label for="base_date">기준 날짜:</label>
+        <input type="text" id="base_date" />
+        <input type="hidden" id="base_date_hidden" />
+
+        <div class="time-box">
+          <label for="base_time">기준 시간:</label>
+          <select id="base_time">
+            <option value="0200">02:00</option>
+            <option value="0500">05:00</option>
+            <option value="0800">08:00</option>
+            <option value="1100">11:00</option>
+            <option value="1400">14:00</option>
+            <option value="1700">17:00</option>
+            <option value="2000">20:00</option>
+            <option value="2300">23:00</option>
+          </select>
+        </div>
+
+        <div class="nx-ny">
+          <label for="nx">X:</label>
+          <input type="text" id="nx" />
+
+          <label for="ny">Y:</label>
+          <input type="text" id="ny" />
+        </div>
+
+        <button onclick="fetchData()">날씨 조회</button>
+      </div>
 
       <button id="loadButton" onclick="loadData()">📊 위험도 예측</button>
     </div>
-
+    <div id="fcst"></div>
     <div id="result-cards"></div>
+    <div id="result">
+      <div id="skySummary" class="sky-summary"></div>
+      <ul id="responseData" class="response-data"></ul>
+    </div>
   </body>
 </html>
