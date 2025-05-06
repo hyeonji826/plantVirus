@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>농약 바코드 스캔</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background: #f6fdf2;
+        font-family: sans-serif;
+      }
+      h2 + p {
+        display: none;
+      }
+      h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-top: 20px;
+        color: #2e7d32;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      #scanner-container {
+        width: 320px;
+        height: 240px;
+        border: 3px solid #1e7201;
+        border-radius: 8px;
+        overflow: hidden;
+        margin: 1rem 0;
+      }
+      .btn-group {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-bottom: 1rem;
+      }
+      .btn-group button {
+        padding: 1rem 1rem;
+        background: #88b953;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 1rem;
+        margin-right: 10px;
+      }
+      .btn-group button:hover {
+        background-color: #32a20c;
+        transform: scale(1.03);
+      }
+      #barcodeResult {
+        font-size: 1.1rem;
+        color: #333;
+        text-align: center;
+      }
+      #barcodeResult::before {
+        content: "인식된 바코드: ";
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="scan-wrapper">
+      <h2>농약 바코드 스캔하기</h2>
+
+      <div id="scanner-container">
+        <video id="scanner" autoplay muted></video>
+      </div>
+
+      <div class="btn-group">
+        <button id="startScan">스캔 시작</button>
+        <button id="stopScan">스캔 중지</button>
+      </div>
+
+      <div id="barcodeResult">
+        <span id="codeText">없음</span>
+      </div>
+    </div>
+
+    <script src="./js/check.js"></script>
+  </body>
+</html>

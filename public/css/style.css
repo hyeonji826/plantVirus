@@ -1,0 +1,91 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f2fef4;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  text-align: center;
+  font-size: 3rem;
+  margin-top: 30px;
+  color: #2e7d32;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+h2::after {
+  content: "아래 결과카드를 클릭하면 해당 병해충 예방 방법이 나옵니다";
+  white-space: pre;
+  display: block;
+  font-size: 1.1rem;
+  color: #555;
+  margin-top: 10px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 40px;
+}
+
+.card {
+  background-color: #ffffff;
+  border: 2px solid #a5d6a7;
+  border-radius: 16px;
+  padding: 24px;
+  margin: 20px;
+  width: 360px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 20px rgba(0, 128, 0, 0.2);
+}
+
+.card h3 {
+  font-size: 1.6rem;
+  color: #388e3c;
+  margin-bottom: 16px;
+}
+
+.card p {
+  font-size: 1.2rem;
+  color: #444;
+  margin: 8px 0;
+}
+
+select, button {
+  font-size: 1.1rem;
+  padding: 10px;
+  margin: 10px 6px;
+  border-radius: 6px;
+  border: 1px solid #a5d6a7;
+}
+
+button {
+  background-color: #a5d6a7;
+  color: #1b5e20;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #81c784;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  h2 {
+    font-size: 2rem;
+  }
+  .card {
+    width: 90%;
+  }
+}
